@@ -26,7 +26,7 @@ public class Bunny_Script : MonoBehaviour
     {
         mouseposition = Input.mousePosition;
         mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
-        position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
-        rb.MovePosition(new Vector2(position.x, 0));
+        //position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
+        transform.position = new Vector3(mouseposition.x, transform.position.y, transform.position.z);
     }
 }
