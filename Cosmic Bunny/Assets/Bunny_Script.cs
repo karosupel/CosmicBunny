@@ -8,10 +8,12 @@ public class Bunny_Script : MonoBehaviour
     Vector3 mouseposition;
     Vector2 position = Vector2.zero;
     public float moveSpeed = 0.1f;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,5 +30,17 @@ public class Bunny_Script : MonoBehaviour
         mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
         //position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
         transform.position = new Vector3(mouseposition.x, transform.position.y, transform.position.z);
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetBool("GroundTouched", true);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        animator.SetBool("GroundTouched", false); 
     }
 }
