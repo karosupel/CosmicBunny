@@ -9,6 +9,7 @@ public class Bunny_Script : MonoBehaviour
     Vector2 position = Vector2.zero;
     public float moveSpeed = 0.1f;
     private Animator animator;
+    public float jumpForce = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,10 @@ public class Bunny_Script : MonoBehaviour
 
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rb.AddForce(Vector2.up * jumpForce);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("GroundTouched", true);
