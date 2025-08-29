@@ -10,6 +10,7 @@ public class Bunny_Script : MonoBehaviour
     public float moveSpeed = 0.1f;
     private Animator animator;
     public float jumpForce = 10;
+    public bool canAdd = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,11 @@ public class Bunny_Script : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.AddForce(Vector2.up * jumpForce);
+        if (canAdd == true)
+        {
+            canAdd = false;
+            StartCoroutine(AddForce());
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,5 +51,12 @@ public class Bunny_Script : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         animator.SetBool("GroundTouched", false); 
+    }
+
+    public IEnumerator AddForce()
+    {
+        rb.AddForce(Vector2.up * jumpForce);
+        yield return new WaitForSeconds(0.2f);
+        canAdd = true;
     }
 }
