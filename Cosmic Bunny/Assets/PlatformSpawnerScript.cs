@@ -28,7 +28,18 @@ public class PlatformSpawnerScript : MonoBehaviour
 
         if (IsVisibleToCamera(new_platform.transform.position + new Vector3(0,3,0)) == true)
         {
-            new_platform = Instantiate(platform_prefab, new Vector3(Random.Range(-5f,5f), new_platform.transform.position.y + 3, 0), Quaternion.identity);
+            if (Random.Range(0f,1f) > 0.5f)
+            {
+                Debug.Log(new_platform.transform.position);
+                new_platform = Instantiate(platform_prefab, new Vector3(Random.Range(-5f, new_platform.transform.position.x - 1.5f), new_platform.transform.position.y + 3, 0), Quaternion.identity);
+                Debug.Log(new_platform.transform.position);
+            }
+            else
+            {
+                Debug.Log(new_platform.transform.position);
+                new_platform = Instantiate(platform_prefab, new Vector3(Random.Range(new_platform.transform.position.x + 1.5f, 5f), new_platform.transform.position.y + 3, 0), Quaternion.identity);
+                Debug.Log(new_platform.transform.position);
+            }
         }
     }
 
