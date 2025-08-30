@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlatformSpawnerScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject new_platform;
+    public GameObject platform_prefab;
+    
     void Start()
     {
         //na start tworze pierwsza platforme (ktora nie moze uderzyc krolika w ³eb) i nadaje jej nazwe new
+        new_platform = Instantiate(platform_prefab,new Vector3(Random.Range(-5f, -2f),-2,0), Quaternion.identity);
     }
 
     // Update is called once per frame
