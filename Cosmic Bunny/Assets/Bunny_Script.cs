@@ -12,6 +12,8 @@ public class Bunny_Script : MonoBehaviour
     public float jumpForce = 10;
     public bool canAdd = true;
     public float maxSpeed;
+    public float TimeFalling;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +34,10 @@ public class Bunny_Script : MonoBehaviour
         mouseposition = Input.mousePosition;
         mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
 
-        float rayDistance = 10; // minimalna odleg³oœæ pod spodem
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, LayerMask.GetMask("Ground"));
+        //float rayDistance = 10; // minimalna odleg³oœæ pod spodem
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, LayerMask.GetMask("Ground"));
 
-        Debug.DrawRay(transform.position, Vector2.down*rayDistance, Color.red, 10f);
+        //Debug.DrawRay(transform.position, Vector2.down*rayDistance, Color.red, 10f);
 
         //position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
         transform.position = new Vector3(mouseposition.x, transform.position.y, transform.position.z);
@@ -43,9 +45,18 @@ public class Bunny_Script : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, maxSpeed);
         }
-        if (rb.velocity.y < 0 && hit.collider == null)
+
+        if (rb.velocity.y < 0)
         {
-            Debug.Log("You died!");
+            TimeFalling += Time.fixedDeltaTime;
+        }
+        if (rb.velocity.y >= 0)
+        {
+            TimeFalling = 0;
+        }
+        if (TimeFalling > 0.8)
+        {
+            Debug.Log("You Died!");
         }
     }
 

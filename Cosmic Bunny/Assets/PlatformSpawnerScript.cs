@@ -36,7 +36,6 @@ public class PlatformSpawnerScript : MonoBehaviour
                 new_platform = Instantiate(platform_prefab, new Vector3(randomX, new_platform.transform.position.y + 3, 0), Quaternion.identity);
             }
         }
-        
     }
 
     public bool IsVisibleToCamera(Vector3 target)

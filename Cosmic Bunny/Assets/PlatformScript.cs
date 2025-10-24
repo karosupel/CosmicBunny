@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlatformScript : MonoBehaviour
 {
     public Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
