@@ -232,6 +232,7 @@ MonoBehaviour:
   jumpForce: 1000
   canAdd: 1
   maxSpeed: 20
+  TimeFalling: 0
 --- !u!61 &285645978
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -680,7 +681,7 @@ GameObject:
   - component: {fileID: 1737638625}
   - component: {fileID: 1737638624}
   - component: {fileID: 1737638623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
