@@ -13,6 +13,7 @@ public class PlatformSpawnerScript : MonoBehaviour
     void Start()
     {
         //cam = GetComponent<Camera>();
+
         //na start tworze pierwsza platforme (ktora nie moze uderzyc krolika w ³eb) i nadaje jej nazwe new
         new_platform = Instantiate(platform_prefab,new Vector3(Random.Range(Random.Range(-5f,-2f),Random.Range(2f,5f)),-2,0), Quaternion.identity);
     }
@@ -20,27 +21,22 @@ public class PlatformSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //RaycastHit2D hit = Physics2D.Raycast(new_platform.transform.position - new Vector3(-1.5f, 0, 0), Vector2.right * 1.5f, 3f);
 
         //jeœli new.y + 3 jednostki do góry znajduje siê w zasiêgu kamery (bedzie potrzebna na to jakas funkcja jak nic)
         //to ma zostaæ zespawnowany nowy obiekt i teraz to on bedzie new. i tak w nieskoñczonoœæ
         //a ju¿ w algorytmie samej platformy dodamy niszczenie ich, jeœli bêd¹ poza kamer¹. myœlê, ¿e to najbardziej
         //optymalne
 
-        if (IsVisibleToCamera(new_platform.transform.position + new Vector3(0,3,0)) == true)
+        if (platform_prefab != null && new_platform != null)
         {
-            if (Random.Range(0f,1f) > 0.5f)
+            if (IsVisibleToCamera(new_platform.transform.position + new Vector3(0, 3, 0)) == true)
             {
-                Debug.Log(new_platform.transform.position);
-                new_platform = Instantiate(platform_prefab, new Vector3(Random.Range(-5f, new_platform.transform.position.x - 1.5f), new_platform.transform.position.y + 3, 0), Quaternion.identity);
-                Debug.Log(new_platform.transform.position);
-            }
-            else
-            {
-                Debug.Log(new_platform.transform.position);
-                new_platform = Instantiate(platform_prefab, new Vector3(Random.Range(new_platform.transform.position.x + 1.5f, 5f), new_platform.transform.position.y + 3, 0), Quaternion.identity);
-                Debug.Log(new_platform.transform.position);
+                float randomX = Random.Range(-5f, 5f);
+                new_platform = Instantiate(platform_prefab, new Vector3(randomX, new_platform.transform.position.y + 3, 0), Quaternion.identity);
             }
         }
+        
     }
 
     public bool IsVisibleToCamera(Vector3 target)
