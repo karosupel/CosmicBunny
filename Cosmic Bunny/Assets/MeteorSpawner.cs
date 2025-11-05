@@ -40,6 +40,7 @@ public class MeteorSpawner : MonoBehaviour
     public void Spawn()
     {
         float rand_pos_x = Random.Range(-5f, 5f);
+        Debug.Log(rand_pos_x);
         Instantiate(Meteor, new Vector3(rand_pos_x, transform.position.y, 0), Quaternion.identity);
     }
 }
