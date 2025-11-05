@@ -5,8 +5,11 @@ using UnityEngine;
 public class Bunny_Script : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public GameObject Ground;
+
     Vector3 mouseposition;
     Vector2 position = Vector2.zero;
+
     public float moveSpeed = 0.1f;
     private Animator animator;
     public float jumpForce = 10;
@@ -54,9 +57,11 @@ public class Bunny_Script : MonoBehaviour
         {
             TimeFalling = 0;
         }
-        if (TimeFalling > 0.8)
+        if (TimeFalling > 0.7)
         {
             Debug.Log("You Died!");
+            Destroy(Ground);
+            
         }
     }
 
