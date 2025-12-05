@@ -27,9 +27,7 @@ public class Bunny_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mouseposition = Input.mousePosition;
-        //mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
-        //position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
+        
     }
 
     private void FixedUpdate()
@@ -37,13 +35,18 @@ public class Bunny_Script : MonoBehaviour
         mouseposition = Input.mousePosition;
         mouseposition = Camera.main.ScreenToWorldPoint(mouseposition);
 
-        //float rayDistance = 10; // minimalna odleg³oœæ pod spodem
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, LayerMask.GetMask("Ground"));
+        //Movement ala Doodle Jump:
 
-        //Debug.DrawRay(transform.position, Vector2.down*rayDistance, Color.red, 10f);
+        Vector2 target = new Vector2(mouseposition.x, rb.position.y);
 
-        //position = Vector2.Lerp(transform.position, mouseposition, moveSpeed);
-        transform.position = new Vector3(mouseposition.x, transform.position.y, transform.position.z);
+        float targetX = mouseposition.x;
+        float smoothX = Mathf.Lerp(rb.position.x, targetX, moveSpeed);
+
+        rb.velocity = new Vector2(
+            (smoothX - rb.position.x) / Time.fixedDeltaTime,
+            rb.velocity.y
+        );
+
         if (rb.velocity.y > maxSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, maxSpeed);

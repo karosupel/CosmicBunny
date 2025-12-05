@@ -8,11 +8,11 @@ public class PlatformSpawnerScript : MonoBehaviour
     public GameObject new_platform;
     public GameObject platform_prefab;
 
-    public Camera cam;
+    public HelperScript helper;
     
     void Start()
     {
-        //cam = GetComponent<Camera>();
+        helper = GameObject.FindGameObjectWithTag("Helper").GetComponent<HelperScript>();
 
         //na start tworze pierwsza platforme (ktora nie moze uderzyc krolika w ³eb) i nadaje jej nazwe new
         new_platform = Instantiate(platform_prefab,new Vector3(Random.Range(Random.Range(-5f,-2f),Random.Range(2f,5f)),-2,0), Quaternion.identity);
@@ -30,7 +30,7 @@ public class PlatformSpawnerScript : MonoBehaviour
 
         if (platform_prefab != null && new_platform != null)
         {
-            if (IsVisibleToCamera(new_platform.transform.position + new Vector3(0, 3, 0)) == true)
+            if (helper.IsVisibleToCamera(new_platform.transform.position + new Vector3(0, 3, 0)) == true)
             {
                 float randomX = Random.Range(-5f, 5f);
                 new_platform = Instantiate(platform_prefab, new Vector3(randomX, new_platform.transform.position.y + 3, 0), Quaternion.identity);
@@ -38,16 +38,4 @@ public class PlatformSpawnerScript : MonoBehaviour
         }
     }
 
-    public bool IsVisibleToCamera(Vector3 target)
-    {
-        Vector3 target_pos = cam.WorldToViewportPoint(target);
-        if (target_pos.y < 0 || target_pos.y > 1)
-        {
-            return false; //jest poza kamer¹
-        }
-        else
-        {
-            return true; //jest widoczny dla kamery
-        }
-    }
 }

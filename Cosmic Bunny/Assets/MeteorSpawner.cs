@@ -8,11 +8,13 @@ public class MeteorSpawner : MonoBehaviour
     public float CoolDown = 10;
 
     public GameObject Meteor;
+    private LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class MeteorSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(CoolDown);
         Debug.Log("Spawn Meteor");
-        for(int i = 0; i<5; i++)
+        for(int i = 0; i<3; i++)
         {
             Spawn();
             yield return new WaitForSeconds(0.1f);
@@ -41,6 +43,8 @@ public class MeteorSpawner : MonoBehaviour
     {
         float rand_pos_x = Random.Range(-5f, 5f);
         Debug.Log(rand_pos_x);
-        Instantiate(Meteor, new Vector3(rand_pos_x, transform.position.y, 0), Quaternion.identity);
+        Instantiate(Meteor, new Vector3(rand_pos_x, transform.position.y, -1), Quaternion.identity);
+        lineRenderer.SetPosition(0, new Vector3(rand_pos_x, transform.position.y, -1));
+        lineRenderer.SetPosition(1, new Vector3(rand_pos_x, transform.position.y - 20, -1));
     }
 }
