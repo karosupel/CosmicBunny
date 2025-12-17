@@ -28,6 +28,11 @@ public class PlatformSpawnerScript : MonoBehaviour
         //a ju¿ w algorytmie samej platformy dodamy niszczenie ich, jeœli bêd¹ poza kamer¹. myœlê, ¿e to najbardziej
         //optymalne
 
+        //PUNKTY:
+        //sprawdzanie czy platforma jest taka sama (poprzez wartoœæ y),
+        //nie mo¿na dostaæ punktu od tej samej platformy (na tym samym y)
+        //wiec potrzebna jakas zmienna na najnowsza platforme
+
         if (platform_prefab != null && new_platform != null)
         {
             if (helper.IsVisibleToCamera(new_platform.transform.position + new Vector3(0, 3, 0)) == true)

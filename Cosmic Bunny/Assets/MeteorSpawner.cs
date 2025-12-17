@@ -28,7 +28,7 @@ public class MeteorSpawner : MonoBehaviour
     public IEnumerator MeteorSpawningTimer(float CoolDown)
     {
         yield return new WaitForSeconds(CoolDown);
-        Debug.Log("Spawn Meteor");
+        //Debug.Log("Spawn Meteor");
         for(int i = 0; i<3; i++)
         {
             Spawn();
@@ -40,7 +40,7 @@ public class MeteorSpawner : MonoBehaviour
     public void Spawn()
     {
         float rand_pos_x = Random.Range(-5f, 5f);
-        Debug.Log(rand_pos_x);
+        //Debug.Log(rand_pos_x);
         Instantiate(Meteor, new Vector3(rand_pos_x, transform.position.y, -1), Quaternion.identity);
         
     }
