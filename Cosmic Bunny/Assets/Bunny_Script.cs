@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Bunny_Script : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    public GameObject Ground;
+    [SerializeField] GameObject Ground; //czasowe, potem usunac (do umierania main platformy)
 
     Vector3 mouseposition;
     Vector2 position = Vector2.zero;
 
-    public float moveSpeed = 0.1f;
+    private Rigidbody2D rb;
     private Animator animator;
-    public float jumpForce = 10;
+    private HelperScript helper;
     public bool canAdd = true;
-    public float maxSpeed;
-    public float TimeFalling;
+
+    [SerializeField] float moveSpeed = 0.1f;
+    [SerializeField] float jumpForce = 10;
+    [SerializeField] float maxSpeed;
+    [SerializeField] float TimeFalling;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        helper = GameObject.Find("Helper").GetComponent<HelperScript>();
     }
 
     // Update is called once per frame
@@ -79,6 +82,12 @@ public class Bunny_Script : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("GroundTouched", true);
+        //update score:
+        if (collision.gameObject.CompareTag("ScoreZone"))
+        {
+            helper.UpdateScore(1);
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
