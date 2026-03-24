@@ -8,6 +8,7 @@ TagManager:
   - Helper
   - MeteorSpawner
   - ScoreZone
+  - WarningText
   layers:
   - Default
   - TransparentFX

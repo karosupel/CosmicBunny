@@ -818,10 +818,11 @@ GameObject:
   - component: {fileID: 1005565684}
   - component: {fileID: 1005565686}
   - component: {fileID: 1005565685}
+  - component: {fileID: 1005565688}
   - component: {fileID: 1005565687}
   m_Layer: 5
   m_Name: WarningText
-  m_TagString: Untagged
+  m_TagString: WarningText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -943,27 +944,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005565683}
   m_CullTransparentMesh: 1
---- !u!95 &1005565687
-Animator:
-  serializedVersion: 5
+--- !u!114 &1005565687
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005565683}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab1b7a90e1241664d9283323104367ee, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc62fa1a7d15fb47914afcc05fac5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 0}
+  duration: 0.5
+  aplha_start: 0.5
+  alpha_end: 1
+--- !u!225 &1005565688
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005565683}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1089043083
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1003,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1440544716}
   score: 0
+  MeteorWarningText: {fileID: 1005565685}
+  fadingScript: {fileID: 0}
+  repetitions: 5
   cam: {fileID: 519420031}
 --- !u!4 &1089043085
 Transform:
