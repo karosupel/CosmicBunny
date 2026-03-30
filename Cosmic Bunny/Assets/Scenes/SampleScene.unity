@@ -692,6 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnMeteor: 1
   CoolDown: 10
+  helper: {fileID: 0}
   Meteor: {fileID: 5403335360211182768, guid: 841e132379701d94a9b723e5ab43c6ae, type: 3}
 --- !u!4 &672762005
 Transform:
@@ -1003,6 +1004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1440544716}
   score: 0
+  MeteorPanel: {fileID: 369756137}
   MeteorWarningText: {fileID: 1005565685}
   fadingScript: {fileID: 0}
   repetitions: 5
