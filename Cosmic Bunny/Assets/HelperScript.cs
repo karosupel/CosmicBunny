@@ -48,6 +48,7 @@ public class HelperScript : MonoBehaviour
     public IEnumerator ShowMeteorWarning(int repetitions)
     {
         MeteorPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         for(int i=0; i<repetitions; i++)
         {
             fadingScript.FadeIn();

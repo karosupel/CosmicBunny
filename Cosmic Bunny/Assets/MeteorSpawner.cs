@@ -31,6 +31,7 @@ public class MeteorSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(CoolDown);
         helper.StartCoroutine(helper.ShowMeteorWarning(helper.repetitions));
+        yield return new WaitForSeconds(3f);
         for(int i = 0; i<3; i++)
         {
             Spawn();

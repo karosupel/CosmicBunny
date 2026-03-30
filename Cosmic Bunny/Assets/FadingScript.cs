@@ -16,14 +16,20 @@ public class FadingScript : MonoBehaviour
 
     public void FadeIn()
     {
-        StopAllCoroutines();
-        StartCoroutine(Fade(aplha_start, alpha_end));
+        if(gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Fade(alpha_end, aplha_start));
+        }
     }
 
     public void FadeOut()
     {
-        StopAllCoroutines();
-        StartCoroutine(Fade(aplha_start, alpha_end));
+        if(gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Fade(aplha_start, alpha_end));
+        }
     }
 
     private IEnumerator Fade(float start, float end)
