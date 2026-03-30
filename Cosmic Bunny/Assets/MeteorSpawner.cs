@@ -7,12 +7,14 @@ public class MeteorSpawner : MonoBehaviour
     public bool SpawnMeteor = false;
     public float CoolDown = 10;
 
+    public HelperScript helper;
+
     public GameObject Meteor;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        helper = GameObject.FindGameObjectWithTag("Helper").GetComponent<HelperScript>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,14 @@ public class MeteorSpawner : MonoBehaviour
     public IEnumerator MeteorSpawningTimer(float CoolDown)
     {
         yield return new WaitForSeconds(CoolDown);
-        //Debug.Log("Spawn Meteor");
+        helper.StartCoroutine(helper.ShowMeteorWarning(helper.repetitions));
         for(int i = 0; i<3; i++)
         {
             Spawn();
             yield return new WaitForSeconds(0.1f);
         }
         SpawnMeteor = true;
+        helper.MeteorPanel.SetActive(false);
     }
 
     public void Spawn()

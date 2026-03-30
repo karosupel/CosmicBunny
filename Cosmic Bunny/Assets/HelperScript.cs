@@ -8,9 +8,11 @@ public class HelperScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] private float score;
 
+    [SerializeField] public GameObject MeteorPanel;
+
     [SerializeField] TextMeshProUGUI MeteorWarningText;
     [SerializeField] FadingScript fadingScript;
-    [SerializeField] private int repetitions;
+    [SerializeField] public int repetitions;
 
     void Start()
     {
@@ -18,7 +20,8 @@ public class HelperScript : MonoBehaviour
         scoreText.text = "- " + score.ToString() + " -";
 
         fadingScript = GameObject.FindGameObjectWithTag("WarningText").GetComponent<FadingScript>();
-        StartCoroutine(ShowMeteorWarning(repetitions));
+        MeteorPanel.SetActive(false);
+       // StartCoroutine(ShowMeteorWarning(repetitions));
     }
 
     [SerializeField] Camera cam;
@@ -44,6 +47,7 @@ public class HelperScript : MonoBehaviour
 
     public IEnumerator ShowMeteorWarning(int repetitions)
     {
+        MeteorPanel.SetActive(true);
         for(int i=0; i<repetitions; i++)
         {
             fadingScript.FadeIn();
