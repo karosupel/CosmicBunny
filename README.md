@@ -1,2 +1,2 @@
 # CosmicBunny
-unity version control is killing me
+doodle jump styled unity game... with a fun meteor shower mechanic! (in progress)
